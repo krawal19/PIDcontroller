@@ -1,7 +1,7 @@
 /**
  *
  * BSD 3-Clause License
- * Copyright (c) 2018, Kapil Rawal.
+ * Copyright (c) 2018, Kapil Rawal
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -26,96 +26,63 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  @copyright (c) BSD
  *
- *  @file    PID.h
+ *  @file    Parameters.h
  *
  *  @author  Kapil Rawal
  *
  *  @copyright BSD License
  *
- *  @brief   PID controller header file
+ *  @brief   header file for parameters class
  *
  *  @section DESCRIPTION
  *
- *  Definition and implementation of the PID class
+ *  This file contains decleration of class parameters
  */
 
-
-#ifndef INCLUDE_PID_H_
-#define INCLUDE_PID_H_
+#ifndef INCLUDE_PARAMETERS_H_
+#define INCLUDE_PARAMETERS_H_
 
 #include <iostream>
-#include "Parameters.h"
-/**
- * @brief Implementation of PID controller
- */
-class PID {
 
- private:
 
-  Parameters* parameter;
-  /**
-   * @brief kp proportional gain
-   */
-  float kP;
+class Parameters{
 
-  /**
-   * @brief kd derivative gain
-   */
-  float kD;
-
-  /**
-   * @brief ki interal gain
-   */
-  float kI;
-
-  /**
-   * @brief dT time constant
-   */
-  float dT;
-
-  /**
-   * @brief previous error term
-   */
-  float prevErr;
-
- 
 public:
-  
+       
+
   /**
    *  @brief   Constructor
    */
-  explicit PID(Parameters* param) : parameter(param){
-    dT=1.5;
-   prevErr=0;
-   iterr= 0;
-    kP = 0.0;
-    kD = 0.0;
-    kI = 0.0; 
-}
-  float iterr;
+   Parameters();
 
   /**
-   * @brief default destructor
-   */
-  ~PID();
+   *  @brief   Destroys the object
+   */ 
+   virtual ~Parameters(); 
 
+ /**
+   *  @brief  Proportional gain of PID controller
+   *
+   *  
+   *  @return value of KP
+   */
+  virtual double getKP();
 
-  /**
-   * @brief sets the kD gain value according to the passed value
-   * 
-   * @param setpoint velocity
-   * 
-   * @param current velocity
-   * 
-   * @return float value of computed PID
+ /**
+   *  @brief  Differential gain of PID controller
+   *
+   *  
+   *  @return value of KD        
    */
-   float computePID(float, float);
- 
-  /**
-   * @brief gets the parameters kP, kD, kI
+   virtual double getKD();
+
+ /**
+   *  @brief  Intergral gain of PID controller
+   *
+   *  
+   *  @return value of KI        
    */
-   void getParameters();
+   virtual double getKI();
 };
 
-
-#endif // INCLUDE_PID_H_ 
+#endif // INCLUDE_PARAMETERS_H_
