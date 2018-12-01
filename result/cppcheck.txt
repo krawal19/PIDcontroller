@@ -1,10 +1,11 @@
- cppcheck --enable=all --std=c++11 -I include/ --suppress=missingIncludeSystem $( find . -name *.cpp | grep -vE -e "^./build/" -e "^./vendor/" )
+cppcheck --enable=all --std=c++11 -I include/ --suppress=missingIncludeSystem $( find . -name *.cpp | grep -vE -e "^./build/" -e "^./vendor/" )
 Checking app/PID.cpp...
-1/4 files checked 48% done
+1/5 files checked 21% done
+Checking app/Parameters.cpp...
+2/5 files checked 38% done
 Checking app/main.cpp...
-2/4 files checked 56% done
+3/5 files checked 58% done
 Checking test/main.cpp...
-3/4 files checked 64% done
+4/5 files checked 74% done
 Checking test/testPID.cpp...
-4/4 files checked 100% done
-
+5/5 files checked 100% done

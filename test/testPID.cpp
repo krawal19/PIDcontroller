@@ -40,13 +40,11 @@
  *  Parameters class
  */
 
-
-#include <gtest/gtest.h>
-#include "gmock/gmock.h"
-#include <iostream>
-#include <memory>
 #include "PID.h"
 #include "Parameters.h"
+#include <gtest/gtest.h>
+#include "gmock/gmock.h"
+
 using ::testing::Return;
 using ::testing::AtLeast;
 /**
@@ -62,7 +60,7 @@ class MockParameters : public Parameters {
 /**
  * @brief Checking using GMOCK if object methods are called. 
  */
-TEST(PIDTest,Test) {
+TEST(PIDTest, Test) {
   MockParameters param;
   /// Expect call to KP at least once
   EXPECT_CALL(param, getKP()).Times(AtLeast(1));
@@ -71,23 +69,23 @@ TEST(PIDTest,Test) {
   /// Expect call to KI at least once
   EXPECT_CALL(param, getKI()).Times(AtLeast(1));
   PID pid(&param);
-  pid.computePID(1,2);
+  pid.computePID(1, 2);
 }
 
 /**
  * @brief Checking if computePID is working by using GMOCK.
  */
 TEST(PIDTest, adjustvalue) {
- MockParameters param;
-  /// Calling KP once 
-  EXPECT_CALL(param, getKP())  
+  MockParameters param;
+  /// Calling KP once
+  EXPECT_CALL(param, getKP())
       .Times(1).WillRepeatedly(Return(2));
   /// Calling KD once
-  EXPECT_CALL(param, getKI())  
+  EXPECT_CALL(param, getKI())
       .Times(1).WillRepeatedly(Return(1));
   /// Calling KI once
-  EXPECT_CALL(param, getKD())  
+  EXPECT_CALL(param, getKD())
       .Times(1).WillRepeatedly(Return(0.1));
   PID instPID(&param);
-EXPECT_NEAR(-3.5, instPID.computePID(1, 2),0.5);
+EXPECT_NEAR(-3.5, instPID.computePID(1, 2), 0.5);
 }

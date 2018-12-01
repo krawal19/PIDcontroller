@@ -59,14 +59,14 @@ void PID::getParameters() {
 
 
 float PID::computePID(float spVel, float currVel) {
-   getParameters();
+  getParameters();
 
   /// calculate error
   float error = spVel - currVel;
 
   /// calculate iterr for integral
   iterr += error * dT;
- 
+
  /* Output variable is calculate final output
   * 
   * (kp * error) is Proportional term 

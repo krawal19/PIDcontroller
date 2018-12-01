@@ -47,10 +47,10 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-int main() {  
+int main() {
   /// Paramter object
   Parameters param;
-  
+
   /// velocity control
   PID pidVel(&param);
 
@@ -62,7 +62,7 @@ int main() {
   /// input actual velocity
   cout << "enter the actual velocity" << endl;
   cin >> iVal;
-  
+
   /// Computing the PID
   float inc = pidVel.computePID(fVal, iVal);
   cout << " Output : " << inc << endl;
