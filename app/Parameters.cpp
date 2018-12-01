@@ -1,7 +1,7 @@
 /**
  *
  * BSD 3-Clause License
- * Copyright (c) 2018, Kapil Rawal.
+ * Copyright (c) 2018, Kapil Rawal
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -26,57 +26,40 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  @copyright (c) BSD
  *
- *  @file    PID.cpp
+ *  @file    Parameters.cpp
  *
  *  @author  Kapil Rawal
  *
  *  @copyright BSD License
  *
- *  @brief   PID class .cpp file 
+ *  @brief   Implementation of Parameters class
  *
  *  @section DESCRIPTION
  *
- *  Definition and implementation of the PID class
+ * This program implements class Parameters method
  */
 
 #include <iostream>
-#include "PID.h"
+#include "Parameters.h"
 
-
-/**
- * @brief Default destrcutor
- */
-
-PID::~PID() {
+Parameters::Parameters() {
 }
 
-void PID::getParameters() {
-  /// set PID parameters
-  kP = parameter->getKP();
-  kI = parameter->getKI();
-  kD = parameter->getKD();
+Parameters::~Parameters() {
 }
 
-
-float PID::computePID(float spVel, float currVel) {
-   getParameters();
-
-  /// calculate error
-  float error = spVel - currVel;
-
-  /// calculate iterr for integral
-  iterr += error * dT;
- 
- /* Output variable is calculate final output
-  * 
-  * (kp * error) is Proportional term 
-  * 
-  * (kI * iterr) is integral term   
-  * 
-  * (kD * ((error - prevErr) / dT)) is derivative term 
-  */
-  float output = kP * error + kI * iterr + kD * ((error - prevErr) / dT);
-  prevErr = error;
-
-  return output;
+double Parameters::getKP() {
+  /// Value of KP
+  return 2;
 }
+
+double Parameters::getKD() {
+  /// Value of KD;
+  return 1;
+}
+
+double Parameters::getKI() {
+  /// Value of KI
+  return 0.1;
+}
+
